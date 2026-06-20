@@ -1,0 +1,200 @@
+# ╔══════════════════════════════════════════════════════╗
+# ║              i3 config — Gruvbox theme               ║
+# ║         Modifier: Super (tasto Windows)              ║
+# ╚══════════════════════════════════════════════════════╝
+
+# ── Modifier ──────────────────────────────────────────
+set $mod Mod4
+
+# ── Font ──────────────────────────────────────────────
+font pango:JetBrains Mono 10
+
+# ── Avvio automatico ──────────────────────────────────
+exec --no-startup-id dunst                          # notifiche
+exec --no-startup-id nm-applet                      # rete (systray)
+exec --no-startup-id xss-lock -- i3lock -c 282828   # lock screen
+# Sfondo colore piatto (installa feh per immagini):
+exec --no-startup-id xsetroot -solid "#282828"
+
+# ── Palette Gruvbox ───────────────────────────────────
+set $bg      #282828
+set $bg1     #3c3836
+set $bg2     #504945
+set $fg      #ebdbb2
+set $yellow  #d79921
+set $orange  #d65d0e
+set $red     #cc241d
+set $green   #98971a
+set $aqua    #689d6a
+set $gray    #928374
+
+# ── Colori finestre ───────────────────────────────────
+#                       bordo   sfondo  testo  indicatore figlio_bordo
+client.focused          $yellow $bg1    $fg    $orange    $yellow
+client.focused_inactive $bg2    $bg     $gray  $bg2       $bg2
+client.unfocused        $bg     $bg     $gray  $bg        $bg
+client.urgent           $red    $red    $fg    $red       $red
+
+# ── Bordi e gaps ──────────────────────────────────────
+default_border pixel 2
+default_floating_border pixel 2
+hide_edge_borders smart
+
+gaps inner 8
+gaps outer 4
+smart_gaps on
+
+# ── Floating mouse drag ───────────────────────────────
+floating_modifier $mod
+
+# ── Terminale ─────────────────────────────────────────
+set $term alacritty
+bindsym $mod+Return exec $term
+
+# ── Launcher (rofi) ───────────────────────────────────
+bindsym $mod+d exec --no-startup-id rofi -show drun -theme gruvbox-dark-hard
+bindsym $mod+Tab exec --no-startup-id rofi -show window -theme gruvbox-dark-hard
+
+# ── File manager ──────────────────────────────────────
+bindsym $mod+e exec $term -e ranger
+
+# ── Browser ───────────────────────────────────────────
+bindsym $mod+b exec firefox
+
+# ── Chiudi finestra ───────────────────────────────────
+bindsym $mod+q kill
+
+# ── Focus finestre (hjkl o frecce) ───────────────────
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# ── Sposta finestre ───────────────────────────────────
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# ── Split ─────────────────────────────────────────────
+bindsym $mod+s split h   # split orizzontale
+bindsym $mod+v split v   # split verticale
+
+# ── Layout ────────────────────────────────────────────
+bindsym $mod+w layout tabbed
+bindsym $mod+t layout toggle split
+bindsym $mod+f fullscreen toggle
+
+# ── Floating ──────────────────────────────────────────
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space        focus mode_toggle
+
+# ── Contenitore padre/figlio ──────────────────────────
+bindsym $mod+a focus parent
+
+# ── Workspace ─────────────────────────────────────────
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# ── Reload / Restart / Exit ───────────────────────────
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Uscire da i3?' -B 'Sì' 'i3-msg exit'"
+
+# ── Resize mode ───────────────────────────────────────
+mode "resize" {
+    bindsym h resize shrink width  10 px or 10 ppt
+    bindsym j resize grow   height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow   width  10 px or 10 ppt
+
+    bindsym Left  resize shrink width  10 px or 10 ppt
+    bindsym Down  resize grow   height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow   width  10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym $mod+r mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# ── Volume (tasti multimediali) ───────────────────────
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute        exec --no-startup-id pactl set-sink-mute   @DEFAULT_SINK@ toggle
+
+# ── Luminosità (se hai brightnessctl) ─────────────────
+bindsym XF86MonBrightnessUp   exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
+
+# ── Screenshot ────────────────────────────────────────
+bindsym Print      exec --no-startup-id scrot ~/Immagini/screenshot_%Y%m%d_%H%M%S.png
+bindsym $mod+Print exec --no-startup-id scrot -s ~/Immagini/screenshot_%Y%m%d_%H%M%S.png
+
+# ── Lock screen ───────────────────────────────────────
+bindsym $mod+Shift+x exec i3lock -c 282828
+
+# ── Regole finestre floating ──────────────────────────
+for_window [class="Pavucontrol"]  floating enable
+for_window [class="Nm-connection-editor"] floating enable
+for_window [class="Arandr"]       floating enable
+for_window [title="File Properties"] floating enable
+
+# ── Bar (i3bar con i3status) ──────────────────────────
+# Sostituisci con polybar se preferisci (vedi polybar config)
+bar {
+    status_command i3status --config ~/.config/i3/i3status.conf
+    position top
+    font pango:JetBrains Mono 10
+
+    colors {
+        background $bg
+        statusline $fg
+        separator  $bg2
+
+        #                  bordo  sfondo testo
+        focused_workspace  $yellow $bg1  $fg
+        active_workspace   $bg2    $bg2  $fg
+        inactive_workspace $bg     $bg   $gray
+        urgent_workspace   $red    $red  $fg
+    }
+}

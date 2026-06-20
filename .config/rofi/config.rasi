@@ -1,0 +1,103 @@
+/* ╔══════════════════════════════════════════════════╗
+   ║       Rofi config — Gruvbox Dark               ║
+   ║  Salva in: ~/.config/rofi/config.rasi          ║
+   ╚══════════════════════════════════════════════════╝ */
+
+configuration {
+    modi:           "drun,window,run";
+    show-icons:     true;
+    icon-theme:     "Papirus-Dark";
+    drun-display-format: "{name}";
+    font:           "JetBrains Mono 12";
+    terminal:       "alacritty";
+}
+
+* {
+    bg:      #282828ff;
+    bg1:     #3c3836ff;
+    bg2:     #504945ff;
+    fg:      #ebdbb2ff;
+    yellow:  #d79921ff;
+    orange:  #d65d0eff;
+    gray:    #928374ff;
+    red:     #cc241dff;
+
+    background-color: transparent;
+    text-color:       @fg;
+}
+
+window {
+    background-color: @bg;
+    border:           2px;
+    border-color:     @yellow;
+    border-radius:    6px;
+    padding:          0;
+    width:            500px;
+}
+
+mainbox {
+    background-color: @bg;
+    padding:          8px;
+    spacing:          6px;
+}
+
+inputbar {
+    background-color: @bg1;
+    border-radius:    4px;
+    padding:          8px 12px;
+    spacing:          8px;
+    children:         [ prompt, textbox-prompt-colon, entry ];
+}
+
+prompt {
+    text-color: @yellow;
+    font:       "JetBrains Mono Bold 12";
+}
+
+textbox-prompt-colon {
+    text-color: @gray;
+    expand:     false;
+    str:        "›";
+}
+
+entry {
+    text-color:        @fg;
+    placeholder:       "cerca...";
+    placeholder-color: @gray;
+}
+
+listview {
+    background-color: transparent;
+    padding:          4px 0;
+    spacing:          2px;
+    lines:            8;
+    columns:          1;
+    scrollbar:        false;
+}
+
+element {
+    background-color: transparent;
+    border-radius:    4px;
+    padding:          6px 10px;
+    spacing:          8px;
+    children:         [ element-icon, element-text ];
+}
+
+element selected {
+    background-color: @bg2;
+    text-color:       @yellow;
+}
+
+element-icon {
+    size: 20px;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
+
+message {
+    background-color: @bg1;
+    border-radius:    4px;
+    padding:          6px 10px;
+}
