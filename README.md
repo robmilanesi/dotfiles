@@ -1,7 +1,15 @@
-# Dotfiles
-My dotfile configurations
+# Debian Dotfiles
+My dotfile configurations for debian based linux distributions
 
-## Branch organization
-This repo will have N branch for N operating system 
-(mainly debian based linux and MacOS, but who knows in future...)
-The **main** branch is this one and will contain only this README
+# Folder Structure
+TBD
+
+# Install from scratch
+If you are setting up the system for the first time, 
+you can use the install script. It will
+ - Check and install dependencies (stow, fonts, terminal emulator, ...)
+ - Ask you if you want to run stow
+
+```bash
+./scripts/install.sh
+```
