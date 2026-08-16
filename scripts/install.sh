@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-PACKS=('stow' 'alacritty')
+PACKS=('stow' 'alacritty' 'i3' 'i3status' 'feh')
 
 install_dep() {
     local pack_to_install=$1
