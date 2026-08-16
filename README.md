@@ -3,21 +3,25 @@ My dotfile configurations for debian based linux distributions
 
 # Folder Structure
 ```bash
-.
 ├── assets
-│   └── fonts # JetBrains fonts
+│   └── fonts
 │       ├── JetBrainsMonoNerdFont-BoldItalic.ttf
 │       ├── JetBrainsMonoNerdFont-Bold.ttf
 │       ├── JetBrainsMonoNerdFont-Italic.ttf
 │       └── JetBrainsMonoNerdFont-Regular.ttf
 ├── .config
-│   └── alacritty # Terminal emulator
-│       └── alacritty.toml
+│   ├── alacritty
+│   │   └── alacritty.toml
+│   ├── i3
+│   │   ├── config
+│   │   └── i3status.conf
+│   └── rofi
+│       └── config.rasi
 ├── README.md
-├── scripts # Script used for installing packages and dependencies
+├── scripts
 │   ├── install_font.sh
 │   └── install.sh
-├── .stow-local-ignore # Stow ignore list for excluding scripts folder
+├── .stow-local-ignore
 └── .vimrc
 ```
 
