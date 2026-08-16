@@ -1,22 +1,30 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-SEPARATOR="-------------------------"
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PACKS=('stow' 'alacritty')
+
+install_dep() {
+    local pack_to_install=$1
+    if ! command -v "$pack_to_install" &> /dev/null; then
+        echo "$1 now found, installing it..."
+        sudo apt install "$pack_to_install" -y
+    else
+        echo "$pack_to_install already installed. Nothing to do..."
+    fi
+    echo "$pack_to_install installed successfully!"
+    echo "-------------------------"
+}
 
 # Installing fonts
 bash "${SCRIPT_DIR}/install_font.sh"
 
-echo "$SEPARATOR"
-echo "Searching for stow dependency..."
-if ! command -v stow >&2; then
-    echo "Stow now found, installing it..."
-    sudo apt install stow -y
-else
-    echo "Stow already installed! Nothing to do here.."
-fi
+# Installing dependencies
+for pack in "${PACKS[@]}"
+do
+    install_dep "$pack"
+done
 
-echo "Stow installation completed!"
-echo "$SEPARATOR"
+echo "All installations are completed!"
 
 
